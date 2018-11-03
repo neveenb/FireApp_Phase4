@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Custom Markers</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta charset="utf-8">
+  <style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+
+</head>
+
+<body>
+  <div id="navbar"><span> City Map</span></div>
+  <input id="search_field" type="text">
+  <button onclick="findHydrant()">search for location</button>
+  <div id="wrapper"></div>
+  <div class="firepic"><img src="http://localhost:8080/img/fire.png"><span>- fire incident</span></div>
+  <div class="firehydrantpic"><img src="http://localhost:8080/img/fire-hydrant.png"><span>- fire hydrant</span></div>
+  <div class="firetruckpic"><img src="http://localhost:8080/img/truck-lighting.png"><span>- fire truck</span></div>
+
+
+
+  <div id="map"></div>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+  <script async>
+    var map;
+    var destinationMarkerLocation;
+    var destinationMarker;
+    var hydrants = {};
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 16,
+        center: new google.maps.LatLng(25.311984, 55.490568),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+
+      var iconBase = 'http://localhost:8080/img/';
+      var icons = {
+        fireplace: {
+          icon: iconBase + 'fire.png',//fire incident place
+
+        },
+        hydrant: {
+          icon: iconBase + 'fire-hydrant.png',
+
+        },
+        firetruck: {
+          icon: iconBase + 'truck-lighting.png',
+
+        }
+      };
+
+      var locations = null;
+
+      var infowindow = new google.maps.InfoWindow();
+
+      var hydrantsLocation;
+
+      $.get('http://localhost:8080/api/listAllHydrant', (data) => {
+
+        hydrantsLocation = data;
+        var marker, i;
+        // for (i = 0; i < hydrantsLocation.length; i++) {
+        //   marker = new google.maps.Marker({
+        //     position: new google.maps.LatLng(hydrantsLocation[i].lat, hydrantsLocation[i].lng),
+        //     map: map
+        //   });
+
+
+        // }
+
+
+        //js part
+        var features = [
+          {
+            position: new google.maps.LatLng(25.311800, 55.497746),
+            type: 'firetruck',
+            name:'firetruck1'
+          }, {
+            position: new google.maps.LatLng(25.311704, 55.484715),
+            type: 'firetruck',
+            name:'firetruck2'
+          },
+          {
+            position: new google.maps.LatLng(25.319976, 55.498566),
+            type: 'firetruck',
+            name:'firetruck3'
+          }
+        ];
+
+        hydrantsLocation.forEach(data => {
+          features.push({
+            name: data.name,
+            position: new google.maps.LatLng(data.lat, data.lng),
+            type: 'hydrant'
+          });
+
+          hydrants[data.name] = new google.maps.LatLng(data.lat, data.lng);
+        })
+
+        // var infowindow = new google.maps.InfoWindow({
+        //   content: "test"
+        // });
+
+        // Create markers.
+        debugger
+        features.forEach(function (feature) {
+          var marker = new google.maps.Marker({
+            position: feature.position,
+            icon: icons[feature.type].icon,
+            map: map
+          });
+          debugger
+          marker.info = new google.maps.InfoWindow({
+            content: feature.name
+          });
+          google.maps.event.addListener(marker, 'mouseover', function () {
+            // infowindow.setContent(feature.name);
+            this.info.open(this.getMap(), this);
+          }
+          
+          );
+
+          google.maps.event.addListener(marker, 'mouseout', function () {
+            // infowindow.setContent(feature.name);
+            this.info.close();
+          });
+          
+          google.maps.event.addListener(marker,'click',function(){
+            
+            $.get(`http://localhost:8080/api/hydrantCondition?hydrantName=${this.info.content}`,function(data){
+              console.log(data);
+              /*
+            OPEN POP UP HERE
+            */
+            })
+          });
+          
+        });
+
+      });
+
+
+    }
+
+
+    function findHydrant() {
+
+      var query = document.getElementById("search_field").value;
+
+      var cleanedQuery = query.replace(/\s/g, "").toLowerCase();
+      if (destinationMarker) {
+        destinationMarker.setMap(null);
+        destinationMarker
+      }
+      destinationMarkerLocation = hydrants[cleanedQuery];
+
+      if (destinationMarkerLocation) {
+        destinationMarker = new google.maps.Marker({
+          position: destinationMarkerLocation,
+          animation: google.maps.Animation.BOUNCE
+        });
+        destinationMarker.setMap(map);
+        map.setCenter(destinationMarker.getPosition())
+      }
+
+    }
+
+  </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdSyYbwh605jFrCgdDPlUSWyEJJa_fbNE&callback=initMap"></script>
+
+</body>
+
+</html>
