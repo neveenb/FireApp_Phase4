@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*  Specifies font of page*/
+
+html {
+    font: normal 16px sans-serif;
+    color: #555;
+}
+
+ul, nav {
+    list-style: none;
+}
+
+/* Nav bar style*/
+
+nav {
+    list-style: none;
+}
+
+/* Color and transperency of nav bar text */
+
+a {
+    text-decoration: none;
+    opacity: 1;
+    margin: 0 15px;
+    color: rgb(180, 52, 52);
+    cursor: pointer;
+}
+
+a:hover {
+    opacity: 1;
+}
+
+/* Formatting the Nav bar buttons */
+
+a.btn {
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    opacity: 1;
+    margin-top: 10px;
+    color: white
+}
+
+/* Formatting section class   */
+
+section {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 100px;
+}
+
+/* Formatting the header which is the Nav bar */
+
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 35px 100px 0;
+    -webkit-animation: 1s fadein 0.5s forwards;
+    animation: 1s fadein 0.5s forwards;
+    opacity: 0.5;
+    color: white;
+}
+
+/* Animation fading */
+
+@-webkit-keyframes fadein {
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadein {
+    100% {
+        opacity: 1;
+    }
+}
+
+/* For horizontal purposes of the Nav bar */
+
+header nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    margin-right: -15px;
+}
+
+/* PAdding of the Nav bar */
+
+header nav li {
+    margin: 0 15px;
+    color: white;
+}
+
+@media (max-width: 1000px) {
+    header {
+        padding: 20px 50px;
+    }
+}
+
+/* Header animation */
+
+@media (max-width: 700px) {
+    header {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+    }
+}
+
+/* Formatting the text position of App name */
+
+.background {
+    position: relative;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+}
+
+/* Positioning the background image and adding animation to make slideshow */
+
+.background .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    z-index: -1;
+    background-color: #80a3db;
+    -webkit-animation: 15s change 1s forwards;
+    animation: 15s change 1s forwards;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+}
+
+/* Pictures to display in slideshow */
+
+@keyframes change {
+    0% {
+        background-image: url(/img/pic2.jpg);
+    }
+    25% {
+        background-image: url(/img/pic3.jpg);
+    }
+    50% {
+        background-image: url(/img/pic4.jpg);
+    }
+    75% {
+        background-image: url(/img/pic5.jpg);
+    }
+    100% {
+        background-image: url(/img/pic6.jpg);
+    }
+}
+
+@-webkit-keyframes slidefade {
+    100% {
+        opacity: 1;
+        margin: 0;
+    }
+}
+
+@keyframes slidefade {
+    100% {
+        opacity: 1;
+        margin: 0;
+    }
+}
+
+/* Formatting App name style */
+
+.background h1 {
+    font: bold 60px "Open Sans", sans-serif;
+    margin-bottom: 40px;
+    color: white;
+}

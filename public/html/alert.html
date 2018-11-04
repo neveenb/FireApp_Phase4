@@ -1,0 +1,41 @@
+<html>
+
+<head>
+  <!-- Mentions title page for Alerts -->
+  <title>Alerts</title>
+
+  <!-- Linking alert css file -->
+  <link rel="stylesheet" href="/css/alertstyle.css">
+</head>
+
+<body>
+
+  <!-- Createsbincoming emergency button that is used to demonstrate a trigger pop up event -->
+  <button id="raisealertBtn" type="button">Incoming Emergency Alert</button>
+  <!-- Creates modal class instances  -->
+  <!-- the modal -->
+  <div id="myModal" class="modal">
+    <!-- creates modal content class -->
+    <div class="modal-content">
+      <!--creates modal header class -->
+      <div class="modal-header">
+        <!--Emergency alert as a header displayed -->
+        <h2>Emergency Alert!</h2>
+      </div>
+      <!--creates modal body class -->
+      <div class="modal-body">
+        <!-- Displays modal message -->
+        <p>House at location at '25.311168, 55.492236' is on fire! </p>
+        <!-- Creates 2 buttons ; locationbutton and alert teams to view fire incident and team crew -->
+        <button id="locationBtn" type="button">View Fire Location</button>
+        <button id="alertteamBtn" type="button">Alert Teams</button>
+      </div>
+
+
+    </div>
+  </div>
+  <!-- Linking javascript filw of alert.js -->
+  <script src="/js/alert.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+@import url(https://fonts.googleapis.com/css?family=Exo:100,200,400);
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:700,400,300);
+
+/* The body includes a blurred image (background) */
+.body{
+	position: absolute;
+	top: -20px;
+	left: -20px;
+	right: -40px;
+	bottom: -40px;
+	width: auto;
+	height: auto;
+	background-image: url(/img/pic.jpg);
+	background-size: cover;
+	/* syntax to blur background image */
+	-webkit-filter: blur(5px); 
+	z-index: 0;
+}
+
+/* Specifies the position of the App name */
+.header{
+	position: relative;
+	top: calc(50% - 60px);
+	left: calc(50% - 310px);
+	z-index: 2;
+} 
+
+/* The header class is used to format the App name (font, color...) */
+.header div{
+	float: center;
+	color: #ffffff;
+	font-family: 'Exo', sans-serif;
+	font-size: 35px;
+	font-weight: 200;
+}
+
+/* Login class includes the positions of the fields and button */
+.inpput{
+	position: absolute;
+	top: calc(50% - 75px);
+	left: calc(50% - 50px);
+	height: 150px;
+	width: 350px;
+	padding: 10px;
+	z-index: 2;
+}
+
+/* Formats the first input box, username */
+.inpput input[type=text]{
+	width: 265px;
+	height: 35px;
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.6);
+	border-radius: 2px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+}
+
+/* Formats the second input box, password */
+.inpput input[type=password]{
+	width: 265px;
+	height: 35px;
+	background: transparent;
+	border: 1px solid rgba(255,255,255,0.6);
+	border-radius: 2px;
+	color: #fff;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 4px;
+	margin-top: 10px;
+}
+
+/* Formats the login button */
+.inpput input[type=button]{
+	width: 265px;
+	height: 35px;
+	background: #fff;
+	border: 1px solid #fff;
+	cursor: pointer;
+	border-radius: 2px;
+	color: #c52a2a;
+	font-family: 'Exo', sans-serif;
+	font-size: 16px;
+	font-weight: 400;
+	padding: 6px;
+	margin-top: 10px;
+}
+
+/* While hovering over button, make transperant  */
+.inpput input[type=button]:hover{
+	opacity: 0.8;
+}
+
+/* Color of the words shown in input boxes */
+::-webkit-input-placeholder{
+   color: rgba(255,255,255,0.6);
+}
+
+::-moz-input-placeholder{
+   color: rgba(255,255,255,0.6);
+} 

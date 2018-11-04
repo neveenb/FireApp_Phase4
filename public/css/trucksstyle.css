@@ -1,0 +1,41 @@
+/* unordered list */
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #dad5d5;
+}
+
+
+/* adding a background */
+
+body {
+    background-image: url(/img/pic4.jpg);
+}
+
+
+/* to centralize the list */
+
+li {
+    float: center;
+}
+
+
+/* tag 'a' to format the list */
+
+li a {
+    display: block;
+    color: rgba(163, 41, 41, 0.781);
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+
+/* to enable the hover functionality */
+
+li a:hover {
+    background-color: #fcfcfc;
+}
