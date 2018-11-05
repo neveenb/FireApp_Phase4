@@ -32,7 +32,7 @@ app.use(session({
     genid: (req) => {
         return uuid() // use UUIDs for session IDs
     },
-    secret: "idontreallycare",
+    secret: "cookiesecret",
     cookie: { maxAge: 60000 },
     resave: false,
     saveUninitialized: true
