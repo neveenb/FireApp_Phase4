@@ -2,13 +2,15 @@
 var modal = document.getElementById('myModal');
 // Get open modal button
 var modalBtn = document.getElementById('raisealertBtn');
-// Get close button
+
+//on location button click 
 document.getElementById("locationBtn").onclick = function () {
-  window.location.assign("fmap.html")
+  window.location.assign("/html/fmap.html")
 };
 
+//on alert team button click
 document.getElementById("alertteamBtn").onclick = function () {
-  window.location.assign("team1.html")
+  window.location.assign("/html/team1.html")
 };
 
 // Listen for open click

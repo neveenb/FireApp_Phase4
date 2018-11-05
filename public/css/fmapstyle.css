@@ -1,0 +1,14 @@
+/* The map height to define the size of the div
+       * element that contains the map. */
+
+#map {
+  height: 100%;
+}
+
+/* Makes the Map fire incident page fill the window. */
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}

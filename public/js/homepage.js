@@ -19,6 +19,7 @@ document.getElementById("alerts").onclick = function () {
     window.location.assign("/html/alert.html")
 };
 
+// On click logout button will logout the current user 
 $('#logout').click((event) => {
     $.ajax({
         url: 'http://localhost:8080/api/logout',

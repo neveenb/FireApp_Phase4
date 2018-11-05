@@ -1,0 +1,26 @@
+<html>
+
+<!-- Linking city fire map css file -->
+<link rel="stylesheet" href="/css/fmapstyle.css">
+
+<head>
+  <!-- Create title for fire mao -->
+  <title>Fire map</title>
+</head>
+
+<body>
+  <!-- Marker images and labels (span) of fire hydrant, fire site and fire truck is displayed  -->
+  <div class="index"><img src="/img/fire.png"><span>- fire incident</span></div>
+  <div class="index"><img src="/img/fire-hydrant.png"><span>- fire hydrant</span></div>
+  <div class="index"><img src="/img/truck-lighting.png"><span>- fire truck</span></div>
+
+  <!-- Map displayed -->
+  <div id="map"></div>
+  
+  <!-- Linking google maps javascript api in script format -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdSyYbwh605jFrCgdDPlUSWyEJJa_fbNE&callback=initMap"> </script>
+  <!-- Linking city map javascript file -->
+  <script src="/js/fmap.js"></script>
+</body>
+
+</html>

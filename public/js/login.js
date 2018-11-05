@@ -1,4 +1,4 @@
-
+// On the click of the login button, if username and password are a match, it will successfully login the user.
 $("#loginbutton").click((event) => {
     console.log('Clicked');
     $.ajax({
