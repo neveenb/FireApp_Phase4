@@ -8,20 +8,17 @@ ul {
     background-color: #dad5d5;
 }
 
-
 /* adding a background */
 
 body {
     background-image: url(/img/pic4.jpg);
 }
 
-
 /* to centralize the list */
 
 li {
     float: center;
 }
-
 
 /* tag 'a' to format the list */
 
@@ -32,7 +29,6 @@ li a {
     padding: 16px;
     text-decoration: none;
 }
-
 
 /* to enable the hover functionality */
 

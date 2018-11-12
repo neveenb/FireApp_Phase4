@@ -1,25 +1,15 @@
 <!DOCTYPE html>
 <html>
 
+<!-- Connecting to javascript and style css file -->
+
 <head>
   <title>Custom Markers</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <meta charset="utf-8">
-  <style>
-    /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
+  <link rel="stylesheet" href="/css/fmapstyle.css">
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"></script>
+  crossorigin="anonymous"></script>
   <script async src="/js/citymap.js"></script>
 
 </head>
@@ -27,11 +17,15 @@
 <body>
   <div id="navbar"><span> City Map</span></div>
   <input id="search_field" type="text">
+  <!-- Creating a button to search for a particular Hydrant on the map -->
   <button onclick="findHydrant()">search for location</button>
   <div id="wrapper"></div>
+
+  <!-- Images for the map -->
   <div class="firepic"><img src="/img/fire.png"><span>- fire incident</span></div>
   <div class="firehydrantpic"><img src="/img/fire-hydrant.png"><span>- fire hydrant</span></div>
   <div class="firetruckpic"><img src="/img/truck-lighting.png"><span>- fire truck</span></div>
+  <!-- Connecting to the style css file -->
   <link rel="stylesheet" href="/css/hydrantmodule.css">
 
 
@@ -40,16 +34,13 @@
     <!-- Modal content -->
     <div class="modal-content">
       <span class="close">&times;</span>
-      <p>Hydrant info</p>
+      <p id="modalTitle"></p>
       <span id="hydrantInfo"></span>
+    
     </div>
   </div>
   <div id="map">
-
-
   </div>
-
-
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdSyYbwh605jFrCgdDPlUSWyEJJa_fbNE&callback=initMap"></script>
 
 </body>
