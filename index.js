@@ -16,7 +16,7 @@ app.use(bodyparser.urlencoded({ extended: false }));
 function serveStaticFile(res, path, contentType, responseCode) {
     if (!responseCode) responseCode = 200;
     //Read file
-    fs.readFile(__dirname + '/public' + path, function (err, data) {
+    fs.readFile(__dirname    + '/public' + path, function (err, data) {
         if (err) {
             res.writeHead(500, { 'Content-Tye': 'text/plain' });
             res.end('500 - Internal Error');
