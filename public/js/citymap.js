@@ -2,8 +2,58 @@ var map;
 var destinationMarkerLocation;
 var destinationMarker;
 var hydrants = {};
+
+var features = [];
+
+var broker = "broker.mqttdashboard.com";
+var port = 8000;
+
+var client = new Paho.MQTT.Client(broker, port, "myclientid_" + parseInt(Math.random() * 100, 10));
+
+client.onConnectionLost = function (responseObject) {
+    console.log("Connection lost: ", responseObject.errorMessage);
+}
+
+client.onMessageArrived = function (message) {
+    console.log(message.destinationName, "---", message.payloadString);
+
+    let body = JSON.parse(message.payloadString);
+    let pub = message.destinationName.split('/');
+    // debugger
+    if (pub[1] === 'hydrant') {
+        let hydrantName = pub[2];
+        features.forEach(x => {
+            if (x.name == hydrantName) {
+                x.temperature = body.temperature;
+                x.pressure = body.pressure;
+
+                if (body.temperature > 25 && body.pressure > 20)
+                    x.condition = 'normal';
+                else
+                    x.condition = 'faulty';
+            }
+        });
+    } else if (pub === 'watch') {
+
+    }
+    //TODO fix this 
+}
+
+var options = {
+    timeout: 3,
+    onSuccess: function () {
+        console.log("mqtt connected ");
+        client.subscribe("/hydrant/#", { qos: 1 });
+    },
+    onFailure: function (message) {
+        console.log("Connection Failed: " + message.errorMessage);
+    }
+};
+
+
 //Creates the function that gets map through ID from google maps
 function initMap() {
+    client.connect(options);
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 16,
         center: new google.maps.LatLng(25.311984, 55.490568),
@@ -39,7 +89,6 @@ function initMap() {
         //put data in hydrant location spot
         hydrantsLocation = data;
         var marker, i;
-        var features = [];
         //for each hydrant icon location  initalized, database info such the name, position, temperature, pressure and 
         //condition are pushed into data objects for accessibility
         //type refers to the hydrant icon initialized

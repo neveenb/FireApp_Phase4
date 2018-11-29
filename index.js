@@ -8,6 +8,7 @@ const fs = require('fs');
 const app = express();
 const genuuid = require('uuid/v4');
 const bcrypt = require('bcrypt');
+
 //middleware to match requests
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: false }));
@@ -40,7 +41,7 @@ app.use(session({
     saveUninitialized: true
 }));
 //selecting hydrant_status database 
-let status = nano.use('hydrant_status');
+let status = nano.use('hydrant_condition');
 
 //selecting users database 
 let user = nano.use('users');
